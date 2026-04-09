@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cluster-Adaptive Forecasting with Supervised Correction Loops</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cluster-Adaptive Forecasting with Supervised Correction Loops</h1>
+        <p class="subtitle">Real-time regime detection and adaptive prediction system</p>
+
+        <div class="controls">
+            <button class="btn btn-primary" id="startBtn">Start Simulation</button>
+            <button class="btn btn-secondary" id="stopBtn">Stop</button>
+            <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            <span id="status" class="status-stopped" style="margin-left: var(--space-12); align-self: center; font-weight: var(--font-weight-medium);">● Stopped</span>
+        </div>
+        <div id="processing-info" style="margin-bottom: var(--space-16); font-style: italic; color: var(--color-text-secondary);"></div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Current Regime</h2>
+                <div style="margin-bottom: var(--space-16);">
+                    <span class="regime-indicator regime-0" id="currentRegime">Regime 0</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <div class="metric-label">Time Step</div>
+                        <div class="metric-value" id="timeStep">0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Transitions</div>
+                        <div class="metric-value" id="transitions">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Performance Metrics</h2>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <div class="metric-label">Adaptive MAE</div>
+                        <div class="metric-value" id="adaptiveMAE">0.00</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Monolithic MAE</div>
+                        <div class="metric-value" id="monolithicMAE">0.00</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Improvement</div>
+                        <div class="metric-value" id="improvement" style="color: var(--color-success);">0.0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Time Series & Predictions</h2>
+                <div class="chart-container">
+                    <canvas id="timeSeriesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Regime Clustering (Feature Space)</h2>
+                <div class="chart-container">
+                    <canvas id="clusterChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Forecast Error by Regime</h2>
+                <div class="chart-container">
+                    <canvas id="errorChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>System Log</h2>
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry">[INFO] System initialized</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Model Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Regime</th>
+                        <th>Adaptive MAE</th>
+                        <th>Monolithic MAE</th>
+                        <th>Improvement</th>
+                        <th>Samples</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTable">
+                    <tr><td>Regime 0</td><td>0.00</td><td>0.00</td><td>0.0%</td><td>0</td></tr>
+                    <tr><td>Regime 1</td><td>0.00</td><td>0.00</td><td>0.0%</td><td>0</td></tr>
+                    <tr><td>Regime 2</td><td>0.00</td><td>0.00</td><td>0.0%</td><td>0</td></tr>
+                    <tr><td>Regime 3</td><td>0.00</td><td>0.00</td><td>0.0%</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
